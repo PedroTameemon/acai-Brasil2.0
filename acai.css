@@ -1,0 +1,297 @@
+
+:root {
+    --cor-acai-principal: #8A2BE2; /* Azul Violeta, Cor do Açaí */
+    --cor-primaria: #C2185B; /* Rosa Escuro, para Destaque */
+    --cor-secundaria: #FF8F00; /* Laranja/Âmbar, Destaque Secundário */
+    --cor-clara: #ffffff;
+    --cor-fundo: #fefefe; /* Fundo mais claro e limpo */
+    --cor-texto: #333333;
+    --sombra-leve: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 8px 16px rgba(0, 0, 0, 0.15);
+    --sombra-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --transicao: 0.4s ease-in-out;
+    --radius-card: 20px; /* Mais arredondado para moderno */
+    --radius-botao: 30px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', 'Arial', sans-serif;
+    background: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 15px 40px;
+    background: linear-gradient(90deg, var(--cor-acai-principal) 0%, #B23AEE 100%);
+    box-shadow: var(--sombra-media);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header h1 {
+    color: var(--cor-clara);
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+header a {
+    text-decoration: none;
+    color: var(--cor-clara);
+    font-weight: 500;
+    padding: 5px 15px;
+    transition: var(--transicao);
+    border-radius: var(--radius-botao);
+}
+
+header a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--cor-secundaria);
+}
+
+header .carrinho {
+    background: var(--cor-secundaria);
+    padding: 10px 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+header .carrinho:hover {
+    background: var(--cor-primaria);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: var(--sombra-hover);
+}
+
+
+
+
+.main-content {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start; /* Alinha o topo dos dois cards */
+    flex-grow: 1; 
+}
+
+
+body > .produto, body > .acrescimos {
+    flex: 1; /* Permite que ambos ocupem espaço igual */
+    min-width: 300px;
+}
+
+.produto {
+    background: var(--cor-clara);
+    padding: 30px;
+    border-radius: var(--radius-card);
+    box-shadow: var(--sombra-media); /* Sombra mais suave */
+    text-align: center;
+    border: 1px solid #eee; /* Borda sutil */
+}
+
+.produto h2 {
+    color: var(--cor-primaria);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.produto img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius-card);
+    box-shadow: var(--sombra-hover);
+    /* Borda sutil com degradê para um toque moderno */
+    border: 5px solid transparent; 
+    background-image: linear-gradient(var(--cor-clara), var(--cor-clara)), 
+                      linear-gradient(45deg, var(--cor-acai-principal), var(--cor-primaria));
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: transform var(--transicao);
+    margin-bottom: 30px;
+}
+
+.produto img:hover {
+    transform: scale(1.03);
+}
+
+/* Botão Principal */
+.produto button {
+    width: 100%;
+    max-width: 350px;
+    padding: 15px 30px;
+    background: var(--cor-acai-principal);
+    color: var(--cor-clara);
+    border: none;
+    border-radius: var(--radius-botao);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    box-shadow: 0 6px 10px rgba(138, 43, 226, 0.4); /* Sombra da cor do açaí */
+    transition: var(--transicao);
+}
+
+.produto button:hover {
+    background: var(--cor-primaria);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 12px rgba(194, 24, 88, 0.4);
+}
+
+
+.acrescimos {
+    background: #f0e8fa; /* Fundo roxo bem claro/lavanda */
+    padding: 30px;
+    border-radius: var(--radius-card);
+    box-shadow: var(--sombra-media);
+    max-height: 800px; /* Limita a altura */
+    overflow-y: auto; /* Adiciona barra de rolagem se necessário */
+}
+
+.acrescimos::-webkit-scrollbar {
+    width: 8px;
+}
+.acrescimos::-webkit-scrollbar-thumb {
+    background-color: var(--cor-acai-principal);
+    border-radius: 10px;
+}
+.acrescimos::-webkit-scrollbar-track {
+    background: #e0d0f0;
+    border-radius: 10px;
+}
+
+
+.acrescimos h3 {
+    color: var(--cor-primaria);
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 25px;
+    position: sticky; /* Mantém o título visível ao rolar */
+    top: -30px;
+    background: inherit;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    z-index: 10;
+}
+.acrescimos h3::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--cor-secundaria);
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+.acrescimos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    /* Grid com separação por linha para cada acréscimo */
+    grid-template-columns: 50px auto 100px;
+    gap: 15px 10px; 
+    align-items: center;
+}
+
+.acrescimos ul li {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--cor-texto);
+    text-align: left; 
+}
+
+.acrescimos ul img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--cor-acai-principal);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.acrescimos ul button {
+    padding: 5px 10px;
+    background: var(--cor-secundaria);
+    color: var(--cor-clara);
+    border: none;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transicao);
+}
+
+.acrescimos ul button:hover {
+    background: var(--cor-primaria);
+    transform: scale(1.05);
+}
+
+
+footer {
+    background: var(--cor-texto);
+    color: var(--cor-clara);
+    text-align: center;
+    padding: 20px 0;
+    width: 100%;
+    margin-top: 40px;
+}
+
+/* ... (Estilos de footer mantidos) ... */
+footer label {
+    display: block;
+    font-size: 1rem;
+    margin-top: 5px;
+    color: #ccc;
+}
+footer p {
+    margin-top: 10px;
+}
+
+
+@media (max-width: 900px) {
+    /* Mudar para layout de coluna quando não houver espaço suficiente */
+    .main-content {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+    }
+    
+    .produto, .acrescimos {
+        width: 100%;
+        max-width: 500px; /* Limita a largura para mobile */
+        margin-bottom: 30px;
+    }
+
+    .produto img {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 20px;
+    }
+}
