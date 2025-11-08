@@ -373,23 +373,6 @@
     <a href="#" class="voltar-ao-topo" title="Voltar ao topo">
         &#9650;
     </a>
-    <script>
-    let lastScrollTop = 0;
-    const header = document.querySelector('header');
-
-    window.addEventListener('scroll', function() {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > lastScrollTop) {
-            // Rolando para baixo
-            header.style.top = '-200px'; // Esconde
-        } else {
-            // Rolando para cima
-            header.style.top = '0'; // Mostra
-        }
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-    });
-</script>
 </body>
 
 </html>

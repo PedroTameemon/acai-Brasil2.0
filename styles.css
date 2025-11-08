@@ -74,7 +74,6 @@ header {
     padding: 15px 40px;
     background: linear-gradient(90deg, var(--cor-acai-principal) 0%, #B23AEE 100%); /* Gradiente Açaí */
     box-shadow: var(--sombra-leve);
-    position: sticky;
     top: 0;
     z-index: 1000;
 }
@@ -233,6 +232,11 @@ header .carrinho:hover {
     flex-direction: column;
 }
 
+.acai p{
+    color:var(--cor-primaria);
+    font-size: 20px;
+    font-weight: bold;
+}
 .acai article:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: var(--sombra-hover);
