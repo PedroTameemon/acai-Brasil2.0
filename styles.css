@@ -11,6 +11,7 @@
     --cor-texto: #333333;
     --sombra-leve: 0 4px 12px rgba(0, 0, 0, 0.1);
     --sombra-hover: 0 8px 16px rgba(0, 0, 0, 0.2);
+    --sombra-escura: 0 8px 20px rgba(0, 0, 0, 0.25); /* Sombra para a História */
     --transicao: 0.4s ease-in-out;
     --radius-card: 15px;
     --radius-botao: 30px;
@@ -34,18 +35,20 @@ body {
     ESTRUTURA PRINCIPAL
 ------------------------------------------------------- */
 .container {
-    padding-top: 50px; /* Espaço para o header fixo/grande */
+    /* Removido padding-top, pois o header "sticky" cuida disso */
     padding-bottom: 50px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-main h2, main h3 {
+/* Estilo unificado para títulos de seção */
+main h2 {
     text-align: center;
     color: var(--cor-primaria);
     margin-top: 40px;
     margin-bottom: 30px;
     font-weight: 700;
+    font-size: 2.2rem;
     position: relative;
 }
 
@@ -137,7 +140,7 @@ header .carrinho:hover {
 }
 
 /* -------------------------------------------------------
-    DESCRIÇÃO
+    DESCRIÇÃO (ID #descricao)
 ------------------------------------------------------- */
 
 .descricao {
@@ -148,12 +151,13 @@ header .carrinho:hover {
     background: var(--cor-clara);
     border-radius: var(--radius-card);
     box-shadow: var(--sombra-leve);
+    margin-top: 40px; /* Espaço após o header */
 }
 
 .descricao img {
     width: 40%;
     max-width: 350px;
-    border-radius: 50%; /* Mantido o estilo de bola para a imagem */
+    border-radius: 50%;
     object-fit: contain;
     border: 5px solid var(--cor-acai-principal);
     transition: transform var(--transicao);
@@ -163,19 +167,35 @@ header .carrinho:hover {
     transform: scale(1.05) rotate(2deg);
 }
 
-.descricao h3 {
+/* O H2 dentro da descrição não precisa da linha (::after) */
+.descricao h2 {
     font-size: 2.5rem;
     color: var(--cor-acai-principal);
     text-align: left;
-    margin: 0;
+    margin: 0 0 15px 0;
+}
+.descricao h2::after {
+    display: none;
 }
 
 .descricao div {
     flex: 1;
 }
 
+.descricao p {
+    margin-bottom: 15px;
+}
+.descricao p:last-child {
+    margin-bottom: 0;
+}
+.descricao strong {
+    color: var(--cor-primaria);
+    font-size: 1.1rem;
+}
+
+
 /* -------------------------------------------------------
-    SEÇÃO AÇAÍ E ACRÉSCIMOS
+    SEÇÃO AÇAÍ E ACRÉSCIMOS (ID #acai-e-acrescimos)
 ------------------------------------------------------- */
 
 .acai-Acrescimo {
@@ -183,6 +203,12 @@ header .carrinho:hover {
     grid-template-columns: 2fr 1fr; /* Açaí maior que Acréscimos */
     gap: 40px;
     margin-top: 50px;
+}
+
+/* H2 dentro do container de Açaí */
+.acai-container h2 {
+    font-size: 1.8rem;
+    margin-top: 0;
 }
 
 /* Cards de Açaí */
@@ -196,16 +222,18 @@ header .carrinho:hover {
     box-shadow: var(--sombra-leve);
 }
 
-.acai > div {
+.acai article { /* Mudado de .acai > div para .acai article */
     background: var(--cor-clara);
     border-radius: var(--radius-card);
     padding: 20px;
     text-align: center;
     box-shadow: var(--sombra-leve);
     transition: var(--transicao);
+    display: flex;
+    flex-direction: column;
 }
 
-.acai > div:hover {
+.acai article:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: var(--sombra-hover);
     border: 2px solid var(--cor-primaria);
@@ -214,27 +242,22 @@ header .carrinho:hover {
 .acai img {
     width: 100%;
     max-width: 200px;
-    height: auto;
+    height: 180px; /* Altura fixa para alinhar */
     border-radius: 10px;
     margin-bottom: 15px;
     object-fit: contain;
+    align-self: center;
 }
 
 .acai h4 {
     color: var(--cor-acai-principal);
     margin-bottom: 10px;
     font-size: 1.3rem;
+    flex-grow: 1; /* Empurra os botões para baixo */
 }
 
-.acai button a {
-    /* O link A está dentro do BUTTON no HTML. Removemos a cor e decorações padrão do A */
-    text-decoration: none;
-    color: inherit;
-    display: block; /* Para o clique pegar todo o botão */
-    padding: 0;
-}
-
-.acai button {
+/* Estilo base para botões e links-botões */
+.acai button, .acai .botao-link {
     padding: 10px 15px;
     background: var(--cor-primaria);
     color: var(--cor-clara);
@@ -242,18 +265,33 @@ header .carrinho:hover {
     border-radius: var(--radius-botao);
     cursor: pointer;
     font-weight: bold;
-    margin-top: 20px;
+    margin-top: 10px; /* Espaço menor entre botões */
     transition: var(--transicao);
     width: 100%;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none; /* Para o .botao-link */
+    display: inline-block; /* Para o .botao-link */
+    font-size: 0.9rem; /* Ajuste de fonte */
 }
 
-.acai button:hover {
+.acai button:hover, .acai .botao-link:hover {
     background: var(--cor-secundaria);
     transform: scale(1.05);
 }
+
+/* Diferencia o botão "Adicionar Acréscimo" (que é um link) */
+.acai .botao-link {
+    background: var(--cor-clara);
+    color: var(--cor-primaria);
+    border: 2px solid var(--cor-primaria);
+}
+.acai .botao-link:hover {
+    background: var(--cor-primaria);
+    color: var(--cor-clara);
+}
+
 
 /* Lista de Acréscimos */
 .acrescimos {
@@ -270,26 +308,12 @@ header .carrinho:hover {
     font-size: 1.8rem;
 }
 
-.acrescimos strong {
-    /* Estiliza os grupos de acréscimos */
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 1px dashed #ddd;
-    font-weight: 600;
-    color: var(--cor-acai-principal);
-    font-size: 1.1rem;
-    align-items: center; /* Centraliza a imagem e o texto */
+/* AQUI A GRANDE MUDANÇA: Estilizando a <ul> correta */
+.acrescimos ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
-
-.acrescimos strong strong {
-    /* Se houver strong aninhado, reseta o estilo para não acumular */
-    border-bottom: none;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
 
 .acrescimos li {
     list-style: none;
@@ -300,11 +324,31 @@ header .carrinho:hover {
     border-bottom: 1px dotted #eee;
     font-weight: normal;
     color: var(--cor-texto);
-    width: 100%;
 }
 
 .acrescimos li:last-child {
     border-bottom: none;
+}
+
+/* Estilo para os Títulos (Frutas, Grãos...) */
+.acrescimos li.categoria-acrescimo {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ddd;
+    font-weight: 600;
+    color: var(--cor-acai-principal);
+    font-size: 1.1rem;
+    align-items: center; /* Centraliza a imagem e o texto */
+}
+
+.acrescimos li.categoria-acrescimo:first-child {
+    margin-top: 0;
+}
+
+.acrescimos li.categoria-acrescimo strong {
+    margin-top: 5px;
 }
 
 .acrescimos img {
@@ -316,75 +360,74 @@ header .carrinho:hover {
     transition: transform var(--transicao);
 }
 
-.acrescimos li:hover img {
+.acrescimos li:not(.categoria-acrescimo):hover img {
     transform: scale(1.1);
 }
-.acrescimos ul {
-    /* Adicionando um reset para a lista de itens, já que não é um UL no HTML */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
 
-/* O HTML usa uma estrutura incomum para os acréscimos (<li> aninhado em <strong>)
-   Vamos tentar estilizar para que pareça uma lista: */
-.acrescimos li {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 0;
-    border-bottom: 1px dotted #eee;
-    font-weight: normal;
-    color: var(--cor-texto);
-}
-.acrescimos strong > strong {
-    display: block;
-    width: 100%;
-    padding-top: 10px;
-}
-.acrescimos strong > strong > li {
-    border-bottom: none;
-    padding: 0;
-}
 
 /* -------------------------------------------------------
-    SEÇÃO MILKSHAKES
+    SEÇÃO MILKSHAKES (ID #milkshakes)
 ------------------------------------------------------- */
 
 .milkshake {
     padding: 30px;
-    background: #fff3e0; /* Fundo amarelo claro para a seção de milkshakes */
+    background: #fff3e0; /* Fundo amarelo claro */
     border-radius: var(--radius-card);
     box-shadow: var(--sombra-leve);
     margin-top: 50px;
 }
 
-.milkshake h2 {
+/* H2 principal da seção Milkshake */
+.milkshake > h2 {
     text-align: left;
     color: var(--cor-secundaria);
-    margin-bottom: 20px;
     margin-top: 0;
 }
 
-.milkshake h2::after {
+.milkshake > h2::after {
     margin: 10px 0 0 0;
+    background: var(--cor-secundaria);
 }
+
+/* H3 (Tradicionais, Gourmet, Temporadas) */
+.milkshake h3 {
+    text-align: left;
+    color: var(--cor-texto);
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ffcc80;
+    padding-bottom: 5px;
+}
+
+/* H4 (Verão, Inverno) */
+.milkshake h4 {
+    text-align: left;
+    color: var(--cor-texto);
+    font-size: 1.2rem;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
 
 .Tradicional, .Gourmet-ingredientes-específicos, .temporadas-verao, .temporadas-inverno {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px 0;
-    margin-bottom: 30px;
-    border-bottom: 1px solid #ffcc80;
 }
-.milkshake > h2:nth-of-type(2) {
-    margin-top: 40px; /* Espaço para o "Tipos Gourmet" */
+
+/* Demais grids não precisam de borda, só o H3 */
+.Tradicional {
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
 
-.Tradicional > div, .Gourmet-ingredientes-específicos > div, .temporadas-verao > div, .temporadas-inverno > div {
+.Tradicional article, 
+.Gourmet-ingredientes-específicos article, 
+.temporadas-verao article, 
+.temporadas-inverno article { /* Mudado de div para article */
     background: var(--cor-clara);
     border-radius: var(--radius-card);
     padding: 15px;
@@ -396,7 +439,10 @@ header .carrinho:hover {
     justify-content: space-between;
 }
 
-.Tradicional > div:hover, .Gourmet-ingredientes-específicos > div:hover, .temporadas-verao > div:hover, .temporadas-inverno > div:hover {
+.Tradicional article:hover, 
+.Gourmet-ingredientes-específicos article:hover, 
+.temporadas-verao article:hover, 
+.temporadas-inverno article:hover {
     transform: translateY(-5px);
     box-shadow: var(--sombra-hover);
     border: 2px solid var(--cor-secundaria);
@@ -405,6 +451,7 @@ header .carrinho:hover {
 .milkshake img {
     width: 100%;
     max-height: 150px;
+    height: 150px; /* Altura fixa */
     object-fit: contain;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -414,9 +461,11 @@ header .carrinho:hover {
     color: var(--cor-texto);
     font-size: 1rem;
     margin-bottom: 5px;
+    flex-grow: 1; /* Garante que o texto cresça e botões alinhem */
 }
 
-.milkshake label {
+/* CORREÇÃO: Mudado de .milkshake label para .milkshake .preco */
+.milkshake .preco {
     display: block;
     color: var(--cor-primaria);
     font-weight: bold;
@@ -441,7 +490,7 @@ header .carrinho:hover {
 }
 
 /* -------------------------------------------------------
-    HISTÓRIA
+    HISTÓRIA (ID #sobre-nos)
 ------------------------------------------------------- */
 
 .Historia {
@@ -451,23 +500,50 @@ header .carrinho:hover {
     border-radius: var(--radius-card);
     box-shadow: var(--sombra-escura);
     margin-top: 60px;
-    text-align: justify;
-}
-.Historia h3{
-    color: #000;
 }
 
-.Historia span {
+.Historia h3 {
+    text-align: left;
+    font-size: 2rem;
+    color: var(--cor-secundaria); /* Melhor contraste */
+    margin-bottom: 20px;
+}
+
+/* CORREÇÃO: Mudado de .Historia span para .Historia p */
+.Historia p {
     display: block;
     margin-bottom: 15px;
     opacity: 0.9;
+    text-align: justify;
 }
 
-.Historia p:first-child span:first-child {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: var(--cor-secundaria);
+/* Novo estilo para a lista <ul> */
+.Historia ul {
+    list-style: none; /* Remove bolinhas */
+    margin: 20px 0;
+    padding-left: 20px;
 }
+
+.Historia li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.Historia li::before {
+    content: '✔'; /* Adiciona um ícone */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--cor-secundaria);
+    font-weight: bold;
+}
+
+.Historia li strong {
+    color: var(--cor-clara);
+}
+
 
 /* -------------------------------------------------------
     RODAPÉ
@@ -480,6 +556,54 @@ footer {
     padding: 20px 0;
     width: 100%;
     margin-top: 40px;
+}
+
+/* =======================================================
+    NOVOS ESTILOS (ACRESCENTADOS)
+======================================================= */
+
+/* -------------------------------------------------------
+    ACESSIBILIDADE: FOCO VISÍVEL
+------------------------------------------------------- */
+a:focus,
+button:focus {
+    /* outline: 3px solid var(--cor-secundaria); */
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--cor-clara), 0 0 0 6px var(--cor-secundaria);
+    border-radius: 4px; 
+}
+/* Remove o outline duplo no header */
+header a:focus,
+header button:focus {
+     box-shadow: 0 0 0 3px var(--cor-secundaria);
+}
+
+/* -------------------------------------------------------
+    BOTÃO VOLTAR AO TOPO
+------------------------------------------------------- */
+.voltar-ao-topo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--cor-acai-principal);
+    color: var(--cor-clara);
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    border-radius: 50%;
+    text-decoration: none;
+    box-shadow: var(--sombra-leve);
+    transition: var(--transicao);
+    opacity: 0.9;
+    z-index: 999;
+}
+
+.voltar-ao-topo:hover {
+    background: var(--cor-primaria);
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 /* =======================================================
@@ -510,15 +634,15 @@ footer {
     .descricao {
         flex-direction: column;
         padding: 20px;
+        text-align: center;
+    }
+    .descricao h2 {
+        text-align: center;
     }
 
     .descricao img {
-        width: 80%;
-        max-width: none;
-    }
-
-    .descricao h3 {
-        text-align: center;
+        width: 60%;
+        max-width: 300px;
     }
 
     .acai-Acrescimo {
@@ -533,10 +657,11 @@ footer {
         flex-direction: column;
         gap: 10px;
         text-align: center;
+        width: 100%;
     }
 
     .container {
-        padding: 20px 10px;
+        padding: 0 10px 20px 10px;
     }
 
     .acai, .Tradicional, .Gourmet-ingredientes-específicos, .temporadas-verao, .temporadas-inverno {
@@ -544,9 +669,13 @@ footer {
     }
 
     .descricao img {
-        width: 100%;
+        width: 80%;
     }
     .descricao {
         padding: 15px;
+    }
+
+    .Historia {
+        padding: 25px;
     }
 }

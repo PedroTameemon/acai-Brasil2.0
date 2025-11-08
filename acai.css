@@ -1,4 +1,6 @@
-
+/* =======================================================
+    CONFIGURAÇÃO DE VARIÁVEIS E GERAL (REPLICADO)
+======================================================= */
 :root {
     --cor-acai-principal: #8A2BE2; /* Azul Violeta, Cor do Açaí */
     --cor-primaria: #C2185B; /* Rosa Escuro, para Destaque */
@@ -30,6 +32,9 @@ body {
     flex-direction: column;
 }
 
+/* =======================================================
+    CABEÇALHO (HEADER) - Consistência
+======================================================= */
 
 header {
     display: flex;
@@ -44,6 +49,7 @@ header {
     z-index: 1000;
 }
 
+/* ... (Estilos de header e links mantidos do CSS anterior) ... */
 header h1 {
     color: var(--cor-clara);
     font-size: 2.2rem;
@@ -78,8 +84,11 @@ header .carrinho:hover {
 }
 
 
+/* =======================================================
+    LAYOUT PRINCIPAL (PRODUTO + ACRÉSCIMOS)
+======================================================= */
 
-
+/* Container Flex para o conteúdo principal */
 .main-content {
     max-width: 1200px;
     margin: 40px auto;
@@ -90,12 +99,17 @@ header .carrinho:hover {
     flex-grow: 1; 
 }
 
+/* Envolvendo os dois cards com um container para layout */
+/* Como os elementos estão diretamente no body, vamos usar o body para o layout principal
+   E aplicar as mudanças nos seletores de classe. */
+/* REMOVENDO OS ESTILOS ANTIGOS DE GRID NO BODY */
 
 body > .produto, body > .acrescimos {
     flex: 1; /* Permite que ambos ocupem espaço igual */
     min-width: 300px;
 }
 
+/* ESTILO MODERNO PARA A CAIXA DO PRODUTO */
 .produto {
     background: var(--cor-clara);
     padding: 30px;
@@ -113,6 +127,7 @@ body > .produto, body > .acrescimos {
     letter-spacing: 1px;
 }
 
+/* Destaque da Imagem do Açaí (Produto) */
 .produto img {
     width: 100%;
     max-width: 400px;
@@ -157,6 +172,9 @@ body > .produto, body > .acrescimos {
     box-shadow: 0 8px 12px rgba(194, 24, 88, 0.4);
 }
 
+/* =======================================================
+    ACRÉSCIMOS (Secundário, menor e visível)
+======================================================= */
 
 .acrescimos {
     background: #f0e8fa; /* Fundo roxo bem claro/lavanda */
@@ -167,6 +185,7 @@ body > .produto, body > .acrescimos {
     overflow-y: auto; /* Adiciona barra de rolagem se necessário */
 }
 
+/* Scrollbar Style Moderno */
 .acrescimos::-webkit-scrollbar {
     width: 8px;
 }
@@ -247,6 +266,9 @@ body > .produto, body > .acrescimos {
     transform: scale(1.05);
 }
 
+/* =======================================================
+    RODAPÉ (FOOTER)
+======================================================= */
 
 footer {
     background: var(--cor-texto);
@@ -268,6 +290,9 @@ footer p {
     margin-top: 10px;
 }
 
+/* =======================================================
+    RESPONSIVIDADE (Ajustada)
+======================================================= */
 
 @media (max-width: 900px) {
     /* Mudar para layout de coluna quando não houver espaço suficiente */
